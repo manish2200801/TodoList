@@ -1,5 +1,5 @@
 //jshint esversion:6
-
+require("dotenv").config()
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 //Setting up Mongoose
-mongoose.connect("mongodb+srv://admin-manish:test-123@cluster0.yebglx5.mongodb.net/test12");
+mongoose.connect("mongodb+srv://admin-manish:test-123@cluster0.yebglx5.mongodb.net/test12")
 
 //Creating Schema
 const itemSchema = {
@@ -127,6 +127,6 @@ app.post('/delete', (req, res) => {
     }
 })
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
     console.log("Server started on port 3000");
 });
